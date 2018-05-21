@@ -26,7 +26,7 @@ When using interrupts:
 
 * Arduino Uno / Nano
 * rotary encoder (e.g. [KY-040](http://henrysbench.capnfatz.com/henrys-bench/arduino-sensors-and-input/keyes-ky-040-arduino-rotary-encoder-user-manual/))
-* [MCP23017](https://www.adafruit.com/product/732)
+* [MCP23017](https://www.adafruit.com/product/732) ([Datasheet](https://cdn-shop.adafruit.com/datasheets/mcp23017.pdf))
 
 
 ### Library usage 
