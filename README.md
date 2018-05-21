@@ -28,6 +28,30 @@ When using interrupts:
 * rotary encoder (e.g. [KY-040](http://henrysbench.capnfatz.com/henrys-bench/arduino-sensors-and-input/keyes-ky-040-arduino-rotary-encoder-user-manual/))
 * [MCP23017](https://www.adafruit.com/product/732)
 
+
+### Library usage 
+
+Include the `RotaryEncOverMCP.h` header in your project.
+
+This exposes a `RotaryEncOverMCP` which can be constructed by using a reference to an `Adafruit_MCP23017` object, its two pin numbers for encoder output A and B. Can also optionally receive an ID and a callback function which will be called when there is a clock-wise or counter-clock-wise rotation of the encoder. The callback is then called with a boolean flag (clockwise rotation or not) and its previously given ID. 
+
+```cpp
+class RotaryEncOverMCP {
+	RotaryEncOverMCP(Adafruit_MCP23017* mcp, byte pinA, byte pinB, rotaryActionFunc actionFunc = nullptr, int id = 0);
+
+	/* Initialize object in the MCP */
+	void init();
+
+ 	/* On an interrupt, can be called with the value of the GPIOAB register (or INTCAP) */
+	void feedInput(uint16_t gpioAB);
+
+	/* Poll the encoder. Will cause an I2C transfer. */
+	void poll();
+
+	Adafruit_MCP23017* getMCP();
+};
+```
+
 ### Modifications
 
 The following modifications to the libraries were made
