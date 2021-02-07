@@ -106,7 +106,9 @@ void handleInterrupt(){
 // handy for interrupts triggered by buttons
 // normally signal a few due to bouncing issues
 void cleanInterrupts(){
+#ifdef __AVR__
     EIFR=0x01;
+#endif
     awakenByInterrupt=false;
 }
 
