@@ -88,6 +88,8 @@ void handleInterrupt(){
 
     for(int j = 0; j < numMCPs; j++) {
         uint16_t gpioAB = allMCPs[j]->readINTCAPAB();
+        // we need to read GPIOAB to clear the interrupt actually.
+        volatile uint16_t dummy = allMCPs[j]->readGPIOAB();
         for (int i=0; i < numEncoders; i++) {
             //only feed this in the encoder if this
             //is coming from the correct MCP
