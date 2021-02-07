@@ -28,8 +28,10 @@ void RotaryEncoderChanged(bool clockwise, int id);
 
 /* Array of all rotary encoders and their pins */
 RotaryEncOverMCP rotaryEncoders[] = {
-        // outputA,B on GPA7,GPA6, register with callback and ID=1
-        RotaryEncOverMCP(&mcp, 7, 6, &RotaryEncoderChanged, 1)
+    // outputA,B on GPB7,GPB6, register with callback and ID=1 (GPB0=7 .. GPB7=15)
+    RotaryEncOverMCP(&mcp, 15, 14, &RotaryEncoderChanged, 1),
+    // outputA,B on GPA0,GPA1, register with callback and ID=2
+    RotaryEncOverMCP(&mcp, 0, 1, &RotaryEncoderChanged, 2)
 };
 constexpr int numEncoders = (int)(sizeof(rotaryEncoders) / sizeof(*rotaryEncoders));
 
