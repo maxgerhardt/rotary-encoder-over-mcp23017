@@ -151,8 +151,9 @@ uint16_t Adafruit_MCP23017::readINTCAPAB() {
 	wiresend(MCP23017_INTCAPB);
 	Wire.endTransmission();
 
+	Wire.requestFrom(MCP23017_ADDRESS | i2caddr, 1);
 	ba = wirerecv();
-	ba <<= 8;
+	ba <<= 8u;
 	ba |= a;
 
 	return ba;
@@ -173,7 +174,7 @@ uint16_t Adafruit_MCP23017::readGPIOAB() {
 	Wire.requestFrom(MCP23017_ADDRESS | i2caddr, 2);
 	a = wirerecv();
 	ba = wirerecv();
-	ba <<= 8;
+	ba <<= 8u;
 	ba |= a;
 
 	return ba;
