@@ -4,6 +4,12 @@
 #include <Rotary.h>
 #include <RotaryEncOverMCP.h>
 
+#if defined(ESP32) || defined(ESP8266)
+#define INTERRUPT_FUNC_ATTRIB IRAM_ATTR
+#else
+#define INTERRUPT_FUNC_ATTRIB  
+#endif
+
 /* Our I2C MCP23017 GPIO expanders */
 Adafruit_MCP23017 mcp;
 
@@ -67,7 +73,7 @@ void setup(){
 
 // The int handler will just signal that the int has happened
 // we will do the work from the main loop.
-void intCallBack() {
+void INTERRUPT_FUNC_ATTRIB intCallBack() {
     awakenByInterrupt=true;
 }
 
