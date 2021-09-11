@@ -25,6 +25,8 @@ class Rotary
 {
   public:
     Rotary(char, char);
+    /* if using a rotary encoder connected directly to the MCU: call this function */
+    void initPinsAndState();
     unsigned char process();
     unsigned char process(unsigned char pin1State, unsigned char pin2State);
 

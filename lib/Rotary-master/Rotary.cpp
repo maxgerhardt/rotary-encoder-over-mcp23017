@@ -72,6 +72,19 @@ Rotary::Rotary(char _pin1, char _pin2) {
   // Assign variables.
   pin1 = _pin1;
   pin2 = _pin2;
+  // Initialise state.
+  state = R_START;
+
+  //code for donig pin mode etc is moved to extra function outside of constructor
+  //avoid calling into pinMode and digitalWrite in the constructor call phase
+  //before firmware could be initialized.
+}
+
+void Rotary::initPinsAndState() {
+  //this is only needed correct you're working with a rotary encoder
+  //connected *directly* to the microcontroller. here we're just 
+  //abusing the state function, so we actually never want execute this code in the
+  //MCP23017 case.
   // Set pins to input.
   pinMode(pin1, INPUT);
   pinMode(pin2, INPUT);
@@ -79,8 +92,6 @@ Rotary::Rotary(char _pin1, char _pin2) {
   digitalWrite(pin1, HIGH);
   digitalWrite(pin2, HIGH);
 #endif
-  // Initialise state.
-  state = R_START;
 }
 
 unsigned char Rotary::process() {
