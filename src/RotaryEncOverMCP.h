@@ -68,6 +68,10 @@ public:
         return mcp;
     }
 
+    int getID() {
+        return id;
+    }
+
 private:
     Rotary rot;                         /* the rotary object which will be created*/
     Adafruit_MCP23017* mcp = nullptr;   /* pointer the I2C GPIO expander it's connected to */
